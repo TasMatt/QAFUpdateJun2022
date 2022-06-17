@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.qmetry</groupId>
+	<artifactId>qaf-blank-project-maven</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${run.time}_${ConfigFile}</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<testSuiteFile>config/InvokeGoogle.xml</testSuiteFile>
+		<qafVersion>3.1.0</qafVersion>
+		<sourceVersion>1.8</sourceVersion>
+		<targetVersion>1.8</targetVersion>
+		<test.results.dir>test-results</test.results.dir>
+		<run.time>${maven.build.timestamp}</run.time>
+		<lib.dir>${project.basedir}/lib</lib.dir>
+		<resource.dir>${project.basedir}/resources</resource.dir>
+		<output.dir>${test.results.dir}/${run.time}</output.dir>
+		<maven.build.timestamp.format>dd_MMM_yyyy_hh_mm_aa</maven.build.timestamp.format>
+		<testng.report.title>QAF Demo</testng.report.title>
+		<ConfigFile></ConfigFile>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>qaf</id>
+			<url>https://qmetry.github.io/qaf/dist</url>
+		</repository>
+
+		<repository>
+			<id>jai</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<!--POI Dependency-->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.2</version>
+		</dependency>
+		<!--POI Dependency-->
+
+		<!--QAF Dependencies-->
+		<dependency>
+			<groupId>com.qmetry</groupId>
+			<artifactId>qaf</artifactId>
+			<version>${qafVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.qmetry</groupId>
+			<artifactId>qaf-support</artifactId>
+			<version>${qafVersion}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.qmetry</groupId>
+					<artifactId>qaf</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--QAF Dependencies-->
+
+		<!--QAF WS Dependencies-->
+		<dependency>
+			<groupId>com.qmetry</groupId>
+			<artifactId>qaf-support-ws</artifactId>
+			<version>${qafVersion}</version>
+		</dependency>
+		<!--QAF WS Dependencies-->
+
+		<!--TestNG Dependencies-->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!--TestNG Dependencies-->
+
+		<!-- appium dependencies -->
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>7.5.1</version>
+		</dependency>
+		<!-- appium dependencies -->
+
+		<!--Microsoft SQL JDBC Dependency-->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>11.1.1.jre18-preview</version>
+		</dependency>
+		<!--Microsoft SQL JDBC Dependency-->
+
+		<!--Oracle SQL JDBC Dependency-->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>21.1.0.0</version>
+		</dependency>
+		<!--Oracle SQL JDBC Dependency-->
+
+		<!--pdfbox dependency-->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>3.0.0-RC1</version>
+		</dependency>
+		<!--pdfbox dependency-->
+
+		<!--Unirest Dependency-->
+		<dependency>
+			<groupId>com.mashape.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.4.9</version>
+		</dependency>
+		<!--Unirest Dependency-->
+
+		<!--Rest Assured Dependency-->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+		<!--Rest Assured Dependency-->
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<compilerVersion>${sourceVersion}</compilerVersion>
+					<source>${sourceVersion}</source>
+					<target>${targetVersion}</target>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>${ConfigFile}</suiteXmlFile>
+					</suiteXmlFiles>
+					<reportsDirectory>${test.results.dir}/${run.time}</reportsDirectory>
+					<systemPropertyVariables>
+						<org.uncommons.reportng.xml-dialect>testng</org.uncommons.reportng.xml-dialect>
+						<org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
+						<log4j.configuration>file:///${resource.dir}/log4j.properties</log4j.configuration>
+						<outputDir>${output.dir}</outputDir>
+						<test.results.dir>${output.dir}/html</test.results.dir>
+						<json.report.root.dir>${test.results.dir}</json.report.root.dir>
+						<json.report.dir>${output.dir}/json</json.report.dir>
+						<selenium.screenshots.dir>${output.dir}/img</selenium.screenshots.dir>
+						<selenium.screenshots.relative.path>../img</selenium.screenshots.relative.path>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

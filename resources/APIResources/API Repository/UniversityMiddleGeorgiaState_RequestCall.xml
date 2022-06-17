@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<requests>
+
+    <GetUniversity>
+
+        <MiddleGeorgiaState>
+
+            <baseUrl>${baseUrl}</baseUrl>
+            <endPoint>all</endPoint>
+           <!-- <headers>${env.headers}</headers>-->
+            <method>GET</method>
+            <query-parameters></query-parameters>
+            <!--<body>updatedduringruntime</body>-->
+
+        </MiddleGeorgiaState>
+
+    </GetUniversity>
+
+</requests>
