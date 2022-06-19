@@ -20,4 +20,13 @@ public class LoginStep extends WebDriverTestCase {
 				"Google.com is invoked successfully.");
 
 	}
+
+	@QAFTestStep(description = "User Verifies DataSheet value {value}")
+	public void verifyDataSheet(String strValue) {
+
+		Validator.verifyTrue(strValue.equals("chrome"),
+				"Datasheet does not work successfully",
+				"Datasheet works successfully");
+
+	}
 }

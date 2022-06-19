@@ -1,0 +1,5 @@
+[
+    { "browser" : "chrome" , 
+	"password" : "123abc123" , 
+	"isvalid" : false }
+]
