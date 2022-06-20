@@ -7,7 +7,7 @@ import com.qmetry.qaf.automation.util.Validator;
 
 public class LoginStep extends WebDriverTestCase {
 
-	@QAFTestStep(description = "Navigate to Google")
+	@QAFTestStep(description = "Navigate to Valley Bank")
 	public void LoginToApplication() {
 
 		BasePage basePage = new BasePage();
@@ -15,9 +15,9 @@ public class LoginStep extends WebDriverTestCase {
 		basePage.openWebsite();
 		basePage.waitForPageToLoad();
 
-		Validator.assertTrue(basePage.imageGoogle.isPresent(),
-				"Google.com is not invoked.",
-				"Google.com is invoked successfully.");
+		Validator.assertTrue(basePage.labelHeadingWelcomeToValley.isPresent(),
+				"Valley Bank is not invoked.",
+				"Valley Bank is invoked successfully.");
 
 	}
 

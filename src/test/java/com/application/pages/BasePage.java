@@ -19,7 +19,7 @@ public class BasePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		driver.manage().window().maximize();
 	}
 
-	@FindBy(locator = "//img[@class='lnXdpd']")
-	public QAFWebElement imageGoogle;
+	@FindBy(locator = "//h2[text()='Welcome to Valley']")
+	public QAFWebElement labelHeadingWelcomeToValley;
 
 }

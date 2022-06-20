@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Sample Selenium Test" verbose="0">
+<suite name="Valley Regression Test" verbose="0">
 
-	<test name="Invoke Google" enabled="true">
+	<test name="Invoke Valley" enabled="true">
 		<parameter name="application.properties" value="resources"></parameter>
-		<parameter name="scenario.file.loc" value="scenarios/InvokeGoogle.feature"></parameter>
+		<parameter name="scenario.file.loc" value="scenarios/InvokeApplicationValley.feature"></parameter>
 		<parameter name="step.provider.pkg" value ="com.application.steps"></parameter>
 		
 		<groups>
+			<run>
+				<include name = "dev">
+				</include>
+			</run>
 		</groups>
 		
 		<classes>
