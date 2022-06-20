@@ -22,4 +22,9 @@ public class BasePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 	@FindBy(locator = "//h2[text()='Welcome to Valley']")
 	public QAFWebElement labelHeadingWelcomeToValley;
 
+
+	@FindBy(locator = "//nav/div[1]/div/ul/li[1]/a[text()='Open an Account']")
+	public QAFWebElement labelTopMenuOpenAnAccount;
+
+
 }

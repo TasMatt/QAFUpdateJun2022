@@ -15,13 +15,23 @@ public class LoginStep extends WebDriverTestCase {
 		basePage.openWebsite();
 		basePage.waitForPageToLoad();
 
-		Validator.assertTrue(basePage.labelHeadingWelcomeToValley.isPresent(),
+		Validator.verifyTrue(basePage.labelHeadingWelcomeToValley.isPresent(),
 				"Valley Bank is not invoked.",
 				"Valley Bank is invoked successfully.");
 
 	}
 
-	@QAFTestStep(description = "User Verifies DataSheet value {value}")
+	@QAFTestStep(description = "Validate top menu displays")
+	public void validateMenuDisplays() {
+
+		BasePage basePage = new BasePage();
+
+		Validator.assertTrue(basePage.labelTopMenuOpenAnAccount.isDisplayed(),
+				"Top Menu, Open An Account is not displayed.",
+				"Top Menu, Open An Account is displayed.");
+	}
+
+		@QAFTestStep(description = "User Verifies DataSheet value {value}")
 	public void verifyDataSheet(String strValue) {
 
 		Validator.verifyTrue(strValue.equals("chrome"),
